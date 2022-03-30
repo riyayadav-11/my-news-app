@@ -35,7 +35,7 @@ const App = function() {
   }, [])
 
   useEffect(() => {
-    setSearchData(dummyData.filter(data => data.heading.includes(searchString) || data.newsData.includes(searchString)))
+    setSearchData(dummyData.filter(data => data.heading.toLowerCase().includes(searchString.toLowerCase()) || data.newsData.toLowerCase().includes(searchString.toLowerCase())))
   }, [searchString])
 
   return (
