@@ -4,14 +4,17 @@ import {Link} from "react-router-dom"
 export default function Home({searchData, searchString, setSearchString}) {
   return (
     <div>
-      <h1>NEWS APP</h1>
-      <div>
+      <div className='search-input'>
         <input placeholder="Search a headline" value={searchString} onChange={e => setSearchString(e.target.value)} />
+        <button>SEARCH</button>
       </div>
-      {searchData?.map(data => (
-        <div key={data.id}>
-          <Link to={`/${data.id}`}>
-            <h2>{data.heading}</h2>
+      {searchData?.map((data, i) => (
+        <div key={i}>
+          <Link to={`/${i}`}>
+            <div className='news-link'>
+              <h2>{data.title}</h2>
+              <p>{data.description}</p>
+            </div>
           </Link>
         </div>
       ))}

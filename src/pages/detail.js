@@ -1,17 +1,21 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {useParams} from 'react-router-dom';
 
 export default function Detail({searchData}) {
   const {id} = useParams();
-  const selectedArticle = searchData.filter(data => data.id == id)?.[0];
+  const selectedArticle = searchData.filter((data, i) => i == id)?.[0];
   console.log(selectedArticle)
   return (
-    <div>
+    <div style={{margin: "20px"}}>
+      <Link to="/">
+        Back
+      </Link>
       <h2>
-        {selectedArticle.heading}
+        {selectedArticle.title}
       </h2>
       <p>
-        {selectedArticle.newsData}
+        {selectedArticle.content}
       </p>
     </div>
   )

@@ -4,6 +4,7 @@ import './index.css';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Home from "./pages/home"
 import Detail from './pages/detail';
+import Header from './components/header';
 
 function createObject(id, heading, newsData){
   return {
@@ -24,6 +25,10 @@ const dummyData = [
   createObject(7, "Harnaaz Kaur Sandhu sets the ramp on fire during FDCI x Lakme Fashion Week", "Harnaaz Kaur Sandhu sets the ramp on fire during FDCI x Lakme Fashion Week"),
 ]
 
+const apiKey = "7f32ccf0035246889cebd1f29e4a5d5f";
+
+const baseUrl = "https://newsapi.org/v2/";
+
 const App = function() {
   const [searchData, setSearchData] = useState(null);
   const [searchString, setSearchString] = useState("");
@@ -31,7 +36,12 @@ const App = function() {
   useEffect(() => {
     //fetch data from api
     //set into searchData
-    setSearchData(dummyData);
+    const fetchData = async () => {
+      const data = await fetch(baseUrl+`top-headlines?country=in&apiKey=${apiKey}`);
+      const json = await data.json();
+      setSearchData(json.articles ? json.articles : [])
+    }
+    fetchData();
   }, [])
 
   useEffect(() => {
@@ -40,6 +50,7 @@ const App = function() {
 
   return (
     <BrowserRouter>
+    <Header />
       <Switch>
         <Route path="/" exact>
           <Home searchData={searchData} searchString={searchString} setSearchString={setSearchString} />
