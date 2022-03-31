@@ -8,7 +8,7 @@ body {
 h2,
 a {
   margin: 0;
-  color: #404040 ;
+  color: #404040;
   text-decoration: none !important;
 }
 
@@ -78,8 +78,8 @@ ul {
 .search-input {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin: 20px 0;
+  justify-content: center;
+  margin: 60px 0;
 }
 
 .search-input input {
@@ -87,7 +87,7 @@ ul {
   font-size: 16px;
   margin-left: 20px;
   padding: 8px 16px;
-  width: 60%;
+  width: 40%;
   border-radius: 4px;
   border: none;
   outline: none;
@@ -96,7 +96,10 @@ ul {
 
 .search-input button {
   display: flex;
-  flex-grow: 1;
+  /* flex-grow: .5; */
+  justify-content: center;
+  align-items: center;
+
   margin: 0 20px;
   background-color: #04a057;
   color: #fff;
@@ -105,7 +108,7 @@ ul {
   border-radius: 4px;
   border: none;
   outline: none;
-  padding: 8px 16px;
+  padding: 8px 48px;
 }
 .search-input button:hover {
   background-color: #046e3d;
@@ -113,12 +116,10 @@ ul {
 
 .newsContainer {
   display: flex;
-  flex-direction: row;
-  /* width: 100vw; */
-  /* height: 100%; */
+
   flex-wrap: wrap;
   margin: 0;
-  /* overflow-x: scroll; */
+  justify-content: center;
 }
 .news-link {
   width: 400px;
@@ -141,7 +142,6 @@ ul {
   display: flex;
   height: 220px;
   margin-bottom: 24px;
-
 }
 .imgContainer img {
   width: 100%;
@@ -152,6 +152,40 @@ ul {
   object-fit: cover;
 }
 
+/* ----------------------------------details page styling------------------------------- */
+
+.newsDetailContainer{
+  max-width: 960px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 16px;
+  margin: auto;
+}
+.btnContainer{
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 36px;
+
+}
+.backBtn{
+  padding: 8px 44px;
+  background-color: #04a057;
+  color: white;
+  font-size: 16px;
+  border-radius: 4px;
+  outline: none;
+
+}
+.backBtn:hover{
+  background-color: #046e3d;
+}
+.detailed{
+  height: auto;
+  max-height: 60vh;
+}
+
+
 /* Scrollbar styling */
 
 /* width */
@@ -160,7 +194,6 @@ ul {
 }
 
 /* Track */
-
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
@@ -175,6 +208,19 @@ ul {
 
 @media screen and (max-width: 560px) {
   .news-link {
+    width: auto;
+    min-width: auto;
+  }
+  .imgContainer {
+    height: auto;
+  }
+  .search-input button {
+    padding: 8px 24px;
+  }
+  .search-input {
+    margin: 36px 0;
+  }
+  .search-input input {
     width: auto;
   }
 }
