@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Home from "./pages/home"
+import Detail from './pages/detail';
 
 function createObject(id, heading, newsData){
   return {
@@ -34,17 +35,19 @@ const App = function() {
   }, [])
 
   useEffect(() => {
-    setSearchData(dummyData.filter(data => data.heading.includes(searchString) || data.newsData.includes(searchString)))
+    setSearchData(dummyData.filter(data => data.heading.toLowerCase().includes(searchString.toLowerCase()) || data.newsData.toLowerCase().includes(searchString.toLowerCase())))
   }, [searchString])
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={() => (
-        <Home searchData={searchData} searchString={searchString} setSearchString={setSearchString} />
-        )}>
+      <Switch>
+        <Route path="/" exact>
+          <Home searchData={searchData} searchString={searchString} setSearchString={setSearchString} />
         </Route>
-      </Routes>
+        <Route path="/:id">
+          <Detail searchData={searchData} />
+        </Route>
+      </Switch>
     </BrowserRouter>
   )
 }

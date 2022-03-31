@@ -1,9 +1,10 @@
 import React from 'react';
-import {useSearchParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 
 export default function Detail({searchData}) {
-  const {id} = useSearchParams();
-  const selectedArticle = searchData.filter(data => data.id === id);
+  const {id} = useParams();
+  const selectedArticle = searchData.filter(data => data.id == id)?.[0];
+  console.log(selectedArticle)
   return (
     <div>
       <h2>

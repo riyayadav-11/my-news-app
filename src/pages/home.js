@@ -6,9 +6,9 @@ export default function Home({searchData, searchString, setSearchString}) {
     <div>
       <h1>NEWS APP</h1>
       <div>
-        <input placeholder="Search a headline" value={searchString} onChange={setSearchString} />
+        <input placeholder="Search a headline" value={searchString} onChange={e => setSearchString(e.target.value)} />
       </div>
-      {searchData.map(data => (
+      {searchData?.map(data => (
         <div key={data.id}>
           <Link to={`/${data.id}`}>
             <h2>{data.heading}</h2>
