@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Home({ searchData, searchString, setSearchString }) {
+export default function Home({ searchData, searchString, setSearchString, searchDataFromAPI }) {
   console.log({ searchData });
   return (
     <div>
@@ -11,7 +11,7 @@ export default function Home({ searchData, searchString, setSearchString }) {
           value={searchString}
           onChange={(e) => setSearchString(e.target.value)}
         />
-        <button>Search</button>
+        <button onClick={searchDataFromAPI}>Search</button>
       </div>
 
       <div className="newsContainer">

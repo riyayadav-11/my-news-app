@@ -63,6 +63,7 @@ const apiKey = "7f32ccf0035246889cebd1f29e4a5d5f";
 const baseUrl = "https://newsapi.org/v2/";
 
 const App = function () {
+  const [allData, setAllData] = useState(null);
   const [searchData, setSearchData] = useState(null);
   const [searchString, setSearchString] = useState("");
 
@@ -74,20 +75,19 @@ const App = function () {
         baseUrl + `top-headlines?country=in&apiKey=${apiKey}`
       );
       const json = await data.json();
+      setAllData(json.articles ? json.articles : []);
       setSearchData(json.articles ? json.articles : []);
     };
     fetchData();
   }, []);
 
-  useEffect(() => {
-    setSearchData(
-      dummyData.filter(
-        (data) =>
-          data.heading.toLowerCase().includes(searchString.toLowerCase()) ||
-          data.newsData.toLowerCase().includes(searchString.toLowerCase())
-      )
+  const searchDataFromAPI = async () => {
+    const data = await fetch(
+      baseUrl + `everything?q=${encodeURI(searchString)}&apiKey=${apiKey}`
     );
-  }, [searchString]);
+    const json = await data.json();
+    setSearchData(json.articles ? json.articles : []);
+  }
 
   return (
     <BrowserRouter>
@@ -98,6 +98,7 @@ const App = function () {
             searchData={searchData}
             searchString={searchString}
             setSearchString={setSearchString}
+            searchDataFromAPI={searchDataFromAPI}
           />
         </Route>
         <Route path="/:id">

@@ -19,7 +19,13 @@ export default function Detail({ searchData }) {
           <img src={selectedArticle.urlToImage} />
         </div>
         <h2>{selectedArticle.title}</h2>
-        <p>{selectedArticle.content}</p>
+        <p>
+          {selectedArticle.content}
+          <a style={{
+            color: "Blue",
+            paddingLeft: "10px",
+          }} href={selectedArticle.url}>Read more</a>
+        </p>
       </div>
     </div>
   );
